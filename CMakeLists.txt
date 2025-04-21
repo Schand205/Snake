@@ -17,8 +17,7 @@ add_executable(snake
 	src/init.cpp
 	src/input.cpp
 	src/main.cpp
-	lib/defs.hpp
-	lib/structs.hpp
+	src/highscore.cpp
 	lib/header.hpp
 )
 # Include Dateien(Header)

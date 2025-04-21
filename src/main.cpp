@@ -5,10 +5,12 @@ int main(int argc, char *argv[])
 	
 	App *app = new App;
 
-	vector<coords> startpos = {{0, }};
+	vector<coords> startpos = {{0, 0}};
 
 	Snake *snake = new Snake(startpos);
 
+	Player player;
+	player.initPlayer();
 /*
 	//Feld Initialisieren
 	array<array<int, SPALTEN>, ZEILEN> feld;
@@ -20,7 +22,7 @@ int main(int argc, char *argv[])
 	initSDL(app);
 
 
-	while (1)
+	while (!app->quit)
 	{
 	prepareScene(app);
 
@@ -36,6 +38,7 @@ int main(int argc, char *argv[])
 
 	SDL_Delay(60);
 	}
+	manageHighscore(player);
 
 	cleanup(app);
 

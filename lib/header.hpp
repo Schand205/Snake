@@ -2,12 +2,26 @@
 
 //Libraries
 #include <SDL.h>
+#include <string>
+#include <vector>
 #include <iostream>
 
 //Namespaces
 using namespace std;
 
 //Structs
+
+class Player {
+public:
+	string name;
+	int score;
+
+	void initPlayer() {
+		name = getenv("USER");
+		score = 0;
+	}
+};
+
 class App {
 public:
 	SDL_Renderer *renderer;
@@ -16,6 +30,7 @@ public:
 	int up;
 	int right;
 	int left;
+	int quit;
 
 	char returnInput() {
 		char input = 0;
@@ -73,3 +88,7 @@ void drawGrid(App *app);
 void drawSnake(App *app, Snake *snake);
 
 void maintainPos(App *app, Snake *snake);
+
+void manageHighscore(Player newPlayer);
+
+

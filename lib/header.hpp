@@ -20,8 +20,20 @@ typedef struct {
 typedef struct {
 	int x;
 	int y;
+} coords;
+
+class Snake {
+public:
+	Snake(vector<coords> sp) : s_pos(sp) {}
+
+	vector<coords> s_pos;
 	SDL_Texture *texture;
-} Snake;
+
+	void updateCoord(int ux, int uy) {
+		s_pos[0].x += ux;
+		s_pos[0].y += uy;
+	}
+};
 
 //Const Variables
 constexpr int SPALTEN = 32;

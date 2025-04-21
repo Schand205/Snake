@@ -5,14 +5,10 @@ int main(int argc, char *argv[])
 	
 	App *app = new App;
 
-	Snake *snake = new Snake;
+	vector<coords> startpos = {{0, }};
 
-	memset(app, 0, sizeof(App));
-   	memset(snake, 0, sizeof(Snake));
+	Snake *snake = new Snake(startpos);
 
-	//Snake nach oben links setzen
-	snake->x = 0;
-	snake->y = 0;
 /*
 	//Feld Initialisieren
 	array<array<int, SPALTEN>, ZEILEN> feld;
@@ -35,21 +31,21 @@ int main(int argc, char *argv[])
 	doInput(app);
 	//Position Updaten (Auslagern
 	if (app->up) {
-        	snake->y -= 1;
+        	snake->updateCoord(0, -1);
         }
         if (app->down) {
-        	snake->y += 1;
+        	snake->updateCoord(0, 1);
         }
         if (app->left) {
-        	snake->x -= 1;
+        	snake->updateCoord(-1, 0);
         }
         if (app->right) {
-        	snake->x += 1;
+        	snake->updateCoord(1, 0);
         }
-	if(snake->x == SPALTEN+1) snake->x = 0;
-	if(snake->x == -1) snake->x = SPALTEN;
-	if(snake->y == ZEILEN+1) snake->y = 0;
-	if(snake->y == -1) snake->y = ZEILEN;
+	if(snake->s_pos[0].x == SPALTEN) snake->updateCoord(-(SPALTEN), 0);
+	if(snake->s_pos[0].x == -1) snake->updateCoord(SPALTEN, 0);
+	if(snake->s_pos[0].y == ZEILEN) snake->updateCoord(0, -(ZEILEN));
+	if(snake->s_pos[0].y == -1) snake->updateCoord(0, ZEILEN);
 
 	presentScene(app);
 

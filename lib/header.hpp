@@ -8,14 +8,32 @@
 using namespace std;
 
 //Structs
-typedef struct {
+class App {
+public:
 	SDL_Renderer *renderer;
 	SDL_Window *window;
 	int down;
 	int up;
 	int right;
 	int left;
-}App;
+
+	char returnInput() {
+		char input = 0;
+		if (up) {
+			input = 'u';
+		}
+		if (down) {
+			input = 'd';
+		}
+		if (left) {
+			input = 'l';
+		}
+		if (right) {
+			input = 'r';
+		}
+		return input;
+	}
+};
 
 typedef struct {
 	int x;
@@ -58,3 +76,5 @@ void cleanup(App *app);
 void drawGrid(App *app);
 
 void drawSnake(App *app, Snake *snake);
+
+void maintainPos(App *app, Snake *snake);

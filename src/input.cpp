@@ -1,6 +1,7 @@
 #include "header.hpp"
 
 void doKeyDown(App *app, SDL_KeyboardEvent *event) {
+	char input;
 	if (event->repeat == 0)
 	{
 		if (event->keysym.scancode == SDL_SCANCODE_UP) {
@@ -34,6 +35,20 @@ void doKeyUp(App *app, SDL_KeyboardEvent *event) {
 		    app->right = 0;
         	}
 	}
+}
+
+void maintainPos(App *app, Snake *snake) {
+	char input = app->returnInput();
+	switch (input) {
+		case 'u': snake->updateCoord(0, -1); break;
+        	case 'd': snake->updateCoord(0, 1); break;
+        	case 'l': snake->updateCoord(-1, 0); break;
+        	case 'r': snake->updateCoord(1, 0); break;
+        }
+	if(snake->s_pos[0].x == SPALTEN) snake->updateCoord(-(SPALTEN), 0);
+	if(snake->s_pos[0].x == -1) snake->updateCoord(SPALTEN, 0);
+	if(snake->s_pos[0].y == ZEILEN) snake->updateCoord(0, -(ZEILEN));
+	if(snake->s_pos[0].y == -1) snake->updateCoord(0, ZEILEN);
 }
 
 void doInput(App *app)

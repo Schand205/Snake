@@ -19,19 +19,14 @@ public:
 
 	char returnInput() {
 		char input = 0;
-		if (up) {
-			input = 'u';
-		}
-		if (down) {
-			input = 'd';
-		}
-		if (left) {
-			input = 'l';
-		}
-		if (right) {
-			input = 'r';
-		}
+		if (up)		input = 'u';
+		if (down)	input = 'd';
+		if (left) 	input = 'l';
+		if (right)	input = 'r';
 		return input;
+	}
+	void resetKeys() {
+		down = up = right = left = 0;
 	}
 };
 

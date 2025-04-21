@@ -64,11 +64,12 @@ void doInput(App *app)
 			break;
 
 		case SDL_KEYDOWN:
+			app->resetKeys();
 			doKeyDown(app, &event.key);
 			break;
 
 		case SDL_KEYUP:
-			doKeyUp(app, &event.key);
+			//doKeyUp(app, &event.key);
 			break;
 
 		default:

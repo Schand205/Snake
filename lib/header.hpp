@@ -10,16 +10,17 @@
 using namespace std;
 
 //Structs
+typedef struct {
+	int x;
+	int y;
+} coords;
 
+//Class
 class Player {
-public:
+public:	
+	Player(string n, int sc) : name(n), score(sc) {}
 	string name;
 	int score;
-
-	void initPlayer() {
-		name = getenv("USER");
-		score = 0;
-	}
 };
 
 class App {
@@ -45,11 +46,6 @@ public:
 	}
 };
 
-typedef struct {
-	int x;
-	int y;
-} coords;
-
 class Snake {
 public:
 	Snake(vector<coords> sp) : s_pos(sp) {}
@@ -60,6 +56,19 @@ public:
 	void updateCoord(int ux, int uy) {
 		s_pos[0].x += ux;
 		s_pos[0].y += uy;
+	}
+};
+
+class Apple {
+public:	
+	Apple(int tx, int ty, bool vis) : x(tx), y(ty), visible(vis) {}
+
+	int x, y;
+	bool visible;
+
+	void set_new_Coords(int rx, int ry) {
+		x = rx;
+		y = ry;
 	}
 };
 
@@ -91,4 +100,6 @@ void maintainPos(App *app, Snake *snake);
 
 void manageHighscore(Player newPlayer);
 
+void randomApple(App *app, Apple &apple);
 
+void updateScore(Player &player, Snake *snake, Apple &apple);

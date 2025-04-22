@@ -18,6 +18,7 @@ add_executable(snake
 	src/input.cpp
 	src/main.cpp
 	src/highscore.cpp
+	src/score.cpp
 	lib/header.hpp
 )
 # Include Dateien(Header)

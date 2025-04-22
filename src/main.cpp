@@ -2,41 +2,38 @@
 
 int main(int argc, char *argv[])
 {
-	
+	//Initialisieren
 	App *app = new App;
 
 	vector<coords> startpos = {{0, 0}};
-
 	Snake *snake = new Snake(startpos);
 
-	Player player;
-	player.initPlayer();
-/*
-	//Feld Initialisieren
-	array<array<int, SPALTEN>, ZEILEN> feld;
-	//Einträge auf 0 setzen
-	for(auto zeile:feld) {
-		zeile.fill(0);
-	}
-*/
+	Player player(getenv("USER"), 0);
+
+	Apple apple(0, 0, false);
+
 	initSDL(app);
 
-
+	//Game-Loop
 	while (!app->quit)
 	{
-	prepareScene(app);
+		prepareScene(app);
 
-	drawGrid(app);
+		drawGrid(app);
 
-	drawSnake(app, snake);
+		drawSnake(app, snake);
 
-	doInput(app);
+		randomApple(app, apple);
 
-	maintainPos(app, snake);
+		doInput(app);
 
-	presentScene(app);
+		maintainPos(app, snake);
 
-	SDL_Delay(60);
+		presentScene(app);
+
+		updateScore(player, snake, apple);
+
+		SDL_Delay(60);
 	}
 	manageHighscore(player);
 

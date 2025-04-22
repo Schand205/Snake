@@ -1,4 +1,13 @@
 #include "header.hpp"
+#include <random>
+
+int randomNumber(int min, int max) {
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<> distr(min, max);
+
+	return distr(gen);
+}
 
 void drawGrid(App *app) {		
 	SDL_SetRenderDrawColor(app->renderer, 255, 255, 255, 255); // Weiß
@@ -19,6 +28,20 @@ void drawSnake(App *app, Snake *snake) {
 	SDL_Rect pos = {snake->s_pos[0].x * FELDGROESSE, snake->s_pos[0].y * FELDGROESSE, FELDGROESSE, FELDGROESSE};
 	SDL_RenderFillRect(app->renderer, &pos);
 }
+
+void randomApple(App *app, Apple &apple) {
+	if(randomNumber(0, 50) == 1 && apple.visible == false) { 
+			apple.set_new_Coords(randomNumber(0, SPALTEN), randomNumber(0, ZEILEN));
+			apple.visible = true;
+	}
+
+	if(apple.visible == true) {
+		SDL_SetRenderDrawColor(app->renderer, 0, 0, 255, 0);
+		SDL_Rect pos = {apple.x*FELDGROESSE, apple.y*FELDGROESSE, FELDGROESSE, FELDGROESSE};
+		SDL_RenderFillRect(app->renderer, &pos);
+	}
+}
+	
 
 void prepareScene(App *app)
 {

@@ -7,11 +7,12 @@ void readHighscore(vector<Player> &highscores) {
 	ifstream file("../highscore.txt");
 
 	if(file.is_open()) {
-		string line;
+		string line, name;
+		int score;
 		while(getline(file, line)) {
-			Player newPlayer;
 			stringstream ss(line);
-			ss >> newPlayer.name >> newPlayer.score;
+			ss >> name >> score;
+			Player newPlayer(name, score);
 			highscores.push_back(newPlayer);
 		}
 	}

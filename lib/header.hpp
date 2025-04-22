@@ -48,14 +48,29 @@ public:
 
 class Snake {
 public:
-	Snake(vector<coords> sp) : s_pos(sp) {}
+	Snake(vector<coords> sp, int first_tail) : s_pos(sp), new_tail(first_tail) {}
 
 	vector<coords> s_pos;
+	int new_tail;			//score for newTail
 	SDL_Texture *texture;
 
 	void updateCoord(int ux, int uy) {
+		if(s_pos.size() > 1) {
+			for(size_t i = s_pos.size()-1; i > 0; i--) {
+				s_pos[i].x = s_pos[i-1].x;
+				s_pos[i].y = s_pos[i-1].y;
+			}
+		}
 		s_pos[0].x += ux;
 		s_pos[0].y += uy;
+	}
+
+	void addTail() {
+		size_t i = s_pos.size()-1;
+		coords new_tail;
+		new_tail.x = s_pos[i].x;
+		new_tail.y = s_pos[i].y;
+		s_pos.push_back(new_tail);
 	}
 };
 

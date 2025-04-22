@@ -13,4 +13,9 @@ void updateScore(Player &player, Snake *snake, Apple &apple) {
 	player.score += 2;
 
 	if(Apple_eaten(snake, apple))	player.score += 50;
+
+	if(player.score > snake->new_tail) {
+		snake->addTail();
+		snake->new_tail += 400;
+	}	
 }

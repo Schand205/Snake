@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 	App *app = new App;
 
 	vector<coords> startpos = {{0, 0}};
-	Snake *snake = new Snake(startpos);
+	Snake *snake = new Snake(startpos, 200);
 
 	Player player(getenv("USER"), 0);
 

@@ -25,8 +25,10 @@ void drawGrid(App *app) {
 
 void drawSnake(App *app, Snake *snake) {
 	SDL_SetRenderDrawColor(app->renderer, 0, 255, 0 , 255);
-	SDL_Rect pos = {snake->s_pos[0].x * FELDGROESSE, snake->s_pos[0].y * FELDGROESSE, FELDGROESSE, FELDGROESSE};
-	SDL_RenderFillRect(app->renderer, &pos);
+	for(auto coords: snake->s_pos) {
+		SDL_Rect pos = {coords.x * FELDGROESSE, coords.y * FELDGROESSE, FELDGROESSE, FELDGROESSE};
+		SDL_RenderFillRect(app->renderer, &pos);
+	}
 }
 
 void randomApple(App *app, Apple &apple) {

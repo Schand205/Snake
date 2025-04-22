@@ -34,12 +34,14 @@ void addScore(vector<Player> &highscores, Player player) {
 		else i--;
 	}
 	//ersten 10 Plätze füllen
-	if(highscores.size() < 10)	
-		highscores.insert(highscores.begin() + i, player);
+	if(highscores.size() < 10) {
+		if(i == highscores.size()-1)	highscores.push_back(player);
+		else				highscores.insert(highscores.begin()+i+1, player);
+	}
 	//einfügen
-	else if(i < 10) {
-		highscores.insert(highscores.begin() + i, player);
+	else if(i < 9) {
 		highscores.pop_back();
+		highscores.insert(highscores.begin()+i+1, player);
 	}
 }
 

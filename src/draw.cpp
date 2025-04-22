@@ -31,12 +31,12 @@ void drawSnake(App *app, Snake *snake) {
 
 void randomApple(App *app, Apple &apple) {
 	if(randomNumber(0, 50) == 1 && apple.visible == false) { 
-			apple.set_new_Coords(randomNumber(0, SPALTEN), randomNumber(0, ZEILEN));
+			apple.set_new_Coords(randomNumber(0, SPALTEN-1), randomNumber(0, ZEILEN-1));
 			apple.visible = true;
 	}
 
 	if(apple.visible == true) {
-		SDL_SetRenderDrawColor(app->renderer, 0, 0, 255, 0);
+		SDL_SetRenderDrawColor(app->renderer, 255, 0, 0, 255);
 		SDL_Rect pos = {apple.x*FELDGROESSE, apple.y*FELDGROESSE, FELDGROESSE, FELDGROESSE};
 		SDL_RenderFillRect(app->renderer, &pos);
 	}

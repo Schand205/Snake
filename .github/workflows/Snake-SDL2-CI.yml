@@ -55,11 +55,11 @@ jobs:
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
         
-    - name: Install Dependencies (SDL2)
-      if: runner.os == 'Línux'
+    - name: Install Dependencies (Linux only)
+      if: runner.os == 'Linux'
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential cmake libsdl2-dev pkg-config zip
+        sudo apt-get install -y build-essential cmake libsdl2-dev libsdl2-2.0-0 pkg-config zip
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
